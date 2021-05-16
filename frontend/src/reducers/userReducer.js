@@ -1,7 +1,7 @@
 import uuid from 'uuid';
 
 export default function weatherReducer(state = {
-    users: []
+    users: [], requesting: false
   }, action) {
       switch(action.type){
       case 'ADD_USER':
@@ -11,8 +11,14 @@ export default function weatherReducer(state = {
           password: action.password,
         }
         return{...state, users: state.users.concat(user)}
-    //   case 'REMOVE_USER':
-        // return {quotes: state.quotes.filter(quote => quote.id !== action.payload)}
-      
+      case 'FETCH_USER_REQUEST':
+          return {
+            ...state,
+            users: [...state.users], 
+            requesting: true
+          }
+      default:
+        return state;
       }
     }
+  
