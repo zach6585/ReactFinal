@@ -17,15 +17,9 @@ export const addUser = user => {
 export function fetchUsers() {
     return (dispatch) => {
         dispatch({type: 'FETCH_USER_REQUEST'});
-        fetch("WILL INSERT PAGE WITH USERS HERE")
+        fetch("localhost:3000/login")
         .then(response => response.json())
-        .then(users => console.log(users))
+        .then(users => users)
     }
 }
 
-export function checkUser() {
-    return (dispatch) => {
-        dispatch({type: 'CHECK_USER'});
-        fetch("")
-    }
-}

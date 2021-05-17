@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { fetchUsers } from '../../actions/users'
 
 class UserLogin extends Component {
     state = {
@@ -22,7 +23,14 @@ class UserLogin extends Component {
         this.setState({ submitted: true });
         const { user } = this.state;
         if (user.username && user.password) {
-            //Here is where we'll log in when that becomes a functionality
+            const users = fetchUsers();
+            const curruser = users.filter(uss => uss.username === user.username)
+            if (curruser.password === user.password){
+                <Redirect to="/home"></Redirect>
+            } 
+            else {
+                location.reload();
+            }
     }
     }
 
