@@ -9,7 +9,7 @@ export const addUser = user => {
             }, 
             body: JSON.stringify(user)
         })
-        const data = await response.json()
+        
         
     }
 }

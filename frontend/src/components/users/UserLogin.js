@@ -24,14 +24,18 @@ class UserLogin extends Component {
         const { user } = this.state;
         if (user.username && user.password) {
             const users = fetchUsers();
+            console.log(users)
             const curruser = users.filter(uss => uss.username === user.username)
             if (curruser.password === user.password){
                 <Redirect to="/home"></Redirect>
             } 
             else {
-                location.reload();
+                <Redirect to="/"></Redirect>;
             }
     }
+        else {
+            <Redirect to="/"></Redirect>
+        }
     }
 
     render(){
