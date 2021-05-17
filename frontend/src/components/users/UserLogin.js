@@ -9,7 +9,6 @@ class UserLogin extends Component {
         username: '',
         password: '', 
         },
-        submitted: false
     }
 
     handleUsernameChange = event => {
@@ -20,14 +19,16 @@ class UserLogin extends Component {
     }
     handleSubmit = event => {
         event.preventDefault();
-        this.setState({ submitted: true });
+        console.log(this.state);
         const { user } = this.state;
+        console.log(user)
         if (user.username && user.password) {
+            console.log('here')
             const users = fetchUsers();
             console.log(users)
             const curruser = users.filter(uss => uss.username === user.username)
             if (curruser.password === user.password){
-                <Redirect to="/home"></Redirect>
+                <Redirect to="/piano"></Redirect>
             } 
             else {
                 <Redirect to="/"></Redirect>;

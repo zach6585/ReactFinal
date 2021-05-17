@@ -19,7 +19,14 @@ export function fetchUsers() {
         dispatch({type: 'FETCH_USER_REQUEST'});
         fetch("localhost:3000/login")
         .then(response => response.json())
-        .then(users => users)
+        .then(json => {
+            let obj = {}
+           
+            for (const i in json){
+                obj.push(i)
+            }
+            return obj
+        })
     }
 }
 

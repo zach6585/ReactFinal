@@ -1,2 +1,0 @@
-class Chao < ApplicationRecord
-end

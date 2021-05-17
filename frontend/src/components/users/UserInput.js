@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addUser } from '../../actions/users.js'
-
-import { Link } from 'react-router-dom';
+import { addUser } from '../../actions/users'
+import { fetchUsers } from '../../actions/users'
+import { Link, Redirect } from 'react-router-dom';
 
 class UserInput extends Component {
     state = {
@@ -21,10 +21,27 @@ class UserInput extends Component {
     }
     handleSubmit = event => {
         event.preventDefault();
-        this.setState({ submitted: true });
-        const { user } = this.state;
-        if (user.username && user.password) {
-            addUser(user);
+        // this.setState({ submitted: true });
+        const allUsers = fetchUsers();
+        console.log(allUsers)
+        if (this.state.user.username && this.state.user.password) {
+            let exists = false
+            for (const i in allUsers){
+                if (i.username === this.state.user.username){
+                    exists = true;
+                    this.setState({user: {username: '', password: ''}});
+                    <Redirect to="/"></Redirect>
+                }
+            }
+            if (exists === true){
+
+                <Redirect to="/"></Redirect>
+            }
+            else{
+                addUser(this.state.user);
+                this.setState({...this.state, submitted: true})
+            }
+            
     }
     }
 
@@ -52,6 +69,10 @@ class UserInput extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {user: state.user}
+}
 
 
-export default connect()(UserInput);    
+
+export default connect(mapStateToProps)(UserInput);    
