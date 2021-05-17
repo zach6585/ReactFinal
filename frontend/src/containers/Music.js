@@ -9,8 +9,9 @@ class Music extends Component {
   render(){
     return(
         <div>
+            <style>{'body { background-color: white; }'}</style>
             <SheetComponent />
-            {/* <PianoComponent /> */}
+            <PianoComponent />
              
         </div>
     )

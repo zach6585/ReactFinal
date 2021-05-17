@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import weatherReducer from './weatherReducer'
+import sheetReducer from './sheetReducer'
 import userReducer from './userReducer'
 
 export default combineReducers({
-    weatherReducer, 
+    sheetReducer, 
     userReducer
 })

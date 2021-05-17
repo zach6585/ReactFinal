@@ -1,0 +1,10 @@
+h1#treble {
+  position: absolute;
+  font-size: 100px;
+  z-index: 1;
+  bottom: 365px;
+}
+
+.staff {
+  z-index: 0;
+}
