@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../../Piano.css';
-
+import Sound from 'react-sound';
 import pianoReducer from '../../reducers/pianoReducer'
 import { addNoteAction } from '../../actions/piano'
 
@@ -24,8 +24,91 @@ class PianoComponent extends Component {
                 note: 'B'
             }})
            pianoReducer(this.state, addNoteAction)
+
+        }
+        else if (clss === "black as") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'A#'
+            }})
+           pianoReducer(this.state, addNoteAction)
+
+        }
+        else if (clss === "white a") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'A'
+            }})
+           pianoReducer(this.state, addNoteAction)
+
+        }
+        else if (clss === "black gs") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'G#'
+            }})
+           pianoReducer(this.state, addNoteAction)
+
+        }
+        else if (clss === "white g") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'G'
+            }})
+           pianoReducer(this.state, addNoteAction)
+
+        }
+
+        else if (clss === "black fs") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'F#'
+            }})
+           pianoReducer(this.state, addNoteAction)
+
+        }
+        else if (clss === "white f") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'F'
+            }})
+           pianoReducer(this.state, addNoteAction)
+
+        }
+        else if (clss === "white e") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'E'
+            }})
+           pianoReducer(this.state, addNoteAction)
+
+        }
+        else if (clss === "black ds") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'D#'
+            }})
+           pianoReducer(this.state, addNoteAction)
+
+        }
+        else if (clss === "white d") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'D'
+            }})
+           pianoReducer(this.state, addNoteAction)
+
+        }
+        else if (clss === "black cs") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'C'
+            }})
+           pianoReducer(this.state, addNoteAction)
+
         }
     }
+    
     handleChange = event => {
         this.setState({song: {title: event.target.value}})
     }
