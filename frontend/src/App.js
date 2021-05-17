@@ -22,8 +22,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={UserInput} />
             <Route exact path='/login' component={UserLogin} />
-            {console.log(this.props)}
-            <Route exact path="/piano" component={Music} />
+            <Route exact path="/music" component={Music} />
           </Switch>
         </div>
       </Router>

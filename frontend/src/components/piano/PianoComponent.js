@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import '../../Piano.css';
 class PianoComponent extends Component {
-    state = {
-        wind: 0,
-        gravity: 9.81,
-    }
     render() {
         return(
-            <h3>Hi</h3>
+            <div>
+                <ul class="set">
+                    <li class="white b"></li>
+                    <li class="black as"></li>
+                    <li class="white a"></li>
+                    <li class="black gs"></li>
+                    <li class="white g"></li>
+                    <li class="black fs"></li>
+                    <li class="white f"></li>
+                    <li class="white e"></li>
+                    <li class="black ds"></li>
+                    <li class="white d"></li>
+                    <li class="black cs"></li>
+                    <li class="white c"></li>
+                </ul>
+            </div>
         )
     }
 }
