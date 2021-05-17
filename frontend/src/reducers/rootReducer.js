@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import sheetReducer from './sheetReducer'
+import pianoReducer from './pianoReducer'
 import userReducer from './userReducer'
 
 export default combineReducers({
-    sheetReducer, 
+    pianoReducer, 
     userReducer
 })

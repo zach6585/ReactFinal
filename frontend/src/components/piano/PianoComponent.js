@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../../Piano.css';
-import ColoredLine from './ColoredLine'
+
+import pianoReducer from '../../reducers/pianoReducer'
+import { addNoteAction } from '../../actions/piano'
 
 class PianoComponent extends Component {
     state = {
         song: { title: '',
-            position: {
-                value: 0,
-                sharp: false
-            },
+            note: {
+                note: '',
+                position: 0,
+            }, spot: 0
              
     }
 }
@@ -17,14 +19,18 @@ class PianoComponent extends Component {
     handleClick = event => {
         const clss = event.target.className 
         if (clss === "white b") {
-            
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'B'
+            }})
+           pianoReducer(this.state, addNoteAction)
         }
     }
     handleChange = event => {
         this.setState({song: {title: event.target.value}})
     }
 
-    handleSubmit = event => {
+    handleTitleSubmit = event => {
         event.preventDefault();
     }
     render() {
@@ -33,20 +39,10 @@ class PianoComponent extends Component {
                 <style>{'body { background-color: green; }'}</style>
                 <div>
                     <div>
-                        <form onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleTitleSubmit}>
                             <input id="title" placeholder="Insert Title" onChange={event => this.handleChange(event)} value={this.state.song.title}></input>
                         </form>
                                 <h3></h3>
-                            <h1 id='treble'>&#119070;</h1>
-                        
-                        <ColoredLine color={"white"} height={10} id="e"/>
-                        <ColoredLine color={"black"} height={5} id="d"/>
-                        <ColoredLine color={"white"} height={10} id="c"/>
-                        <ColoredLine color={"black"} height={5} id="b" />
-                        <ColoredLine color={"white"} height={10} id="a"/>
-                        <ColoredLine color={"black"} height={5} id="g"/>
-                        <ColoredLine color={"white"} height={10} id="f"/>
-                        
                     </div>
                     <div>
                         <ul className="set">
