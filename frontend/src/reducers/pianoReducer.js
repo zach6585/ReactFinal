@@ -12,7 +12,7 @@ notes: [{
         console.log('hi')
         return {
           ...state, song: {...state.song, notes: {...state.song.notes, 
-          position: state.song.spot + 1, note: state.song.song.note}, spot: state.spot + 1 } 
+          position: state.song.spot + 1, note: state.song.note}, spot: state.spot + 1 } 
         }
       default:
         return state;

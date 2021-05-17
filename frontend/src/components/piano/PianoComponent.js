@@ -23,6 +23,8 @@ class PianoComponent extends Component {
                 position: this.state.spot,
                 note: 'B'
             }})
+            let baudio = new Audio("../../mp3s/b3.mp3")
+            baudio.play()
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -108,7 +110,7 @@ class PianoComponent extends Component {
 
         }
     }
-    
+
     handleChange = event => {
         this.setState({song: {title: event.target.value}})
     }
@@ -150,3 +152,10 @@ class PianoComponent extends Component {
 }
 
 export default connect()(PianoComponent)
+
+
+
+
+  const start = () => {
+    
+  }
