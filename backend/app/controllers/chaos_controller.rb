@@ -1,0 +1,2 @@
+class ChaosController < ApplicationController
+end
