@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addUser } from '../../actions/users.js'
-import UserInput from './UserInput';
-import ReactDOM from 'react-dom';
 
+
+import { Link } from 'react-router-dom';
 
 class UserLogin extends Component {
     state = {
+        user: {
         username: '',
         password: '', 
+        },
         submitted: false
     }
 
@@ -23,13 +24,10 @@ class UserLogin extends Component {
         this.setState({ submitted: true });
         const { user } = this.state;
         if (user.username && user.password) {
-            this.props.addUser(user);
-        }
+            //Here is where we'll log in when that becomes a functionality
     }
-    handleAccountExists = event => {
-        event.preventDefault();
-        ReactDOM.render(<UserInput/>,document.getElementById('root'));
     }
+
     render(){
         return(
             <div>
@@ -46,7 +44,7 @@ class UserLogin extends Component {
                 </form>
                 <h3></h3>
                 <h3></h3>
-                <button id="toSignup" onClick={event => this.handleAccountExists(event)}>Don't have an account?</button> 
+                <Link to="/" className="toSignUp">Don't have an account?</Link>
             </div>
         )
     }
