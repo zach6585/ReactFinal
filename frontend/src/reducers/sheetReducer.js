@@ -1,12 +1,13 @@
-export default function weatherReducer(state = {
-    wind: 0, 
-    gravity: 9.81,
-  }, action) {
+export default function sheetReducer(state = {song: { title: '',
+position: {
+    value: 0,
+    sharp: false
+}}}, action) {
   
     switch(action.type) {
   
-      case 'ADD_WIND':
-        return {...state, wind: state.wind + 1}
+      case 'ADD_NOTE':
+        return {...state, song: {...state.song, position: state.song.position.value + 1, sharp: false}}
       case 'REMOVE_WIND':
         return {...state, wind: state.wind - 1}
 

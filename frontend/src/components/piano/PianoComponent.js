@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../../Piano.css';
 import ColoredLine from './ColoredLine'
+
 class PianoComponent extends Component {
     state = {
         song: { title: '',
             position: {
                 value: 0,
-                noteType: 'quarter',
                 sharp: false
             },
              
@@ -17,8 +17,15 @@ class PianoComponent extends Component {
     handleClick = event => {
         const clss = event.target.className 
         if (clss === "white b") {
-
+            
         }
+    }
+    handleChange = event => {
+        this.setState({song: {title: event.target.value}})
+    }
+
+    handleSubmit = event => {
+        event.preventDefault();
     }
     render() {
         return(
@@ -26,9 +33,11 @@ class PianoComponent extends Component {
                 <style>{'body { background-color: green; }'}</style>
                 <div>
                     <div>
-                        <input id="title" onChange={event => handleChange(event)}>{this.state.song.title}</input>
-                        <h3></h3>
-                        <h1 id='treble'>&#119070;</h1>
+                        <form onSubmit={this.handleSubmit}>
+                            <input id="title" placeholder="Insert Title" onChange={event => this.handleChange(event)} value={this.state.song.title}></input>
+                        </form>
+                                <h3></h3>
+                            <h1 id='treble'>&#119070;</h1>
                         
                         <ColoredLine color={"white"} height={10} id="e"/>
                         <ColoredLine color={"black"} height={5} id="d"/>
