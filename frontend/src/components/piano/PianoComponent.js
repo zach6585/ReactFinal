@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../../Piano.css';
-import Sound from 'react-sound';
+
 import pianoReducer from '../../reducers/pianoReducer'
 import { addNoteAction } from '../../actions/piano'
 
@@ -11,7 +11,7 @@ class PianoComponent extends Component {
             note: {
                 note: '',
                 position: 0,
-            }, spot: 0
+            }, spot: 0, audio: ''
              
     }
 }
@@ -22,9 +22,8 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'B'
-            }})
-            let baudio = new Audio("../../mp3s/b3.mp3")
-            baudio.play()
+            }, audio: 'b3.mp3'})
+            
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -32,7 +31,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'A#'
-            }})
+            }, audio: 'a-3.mp3'})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -40,7 +39,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'A'
-            }})
+            }, audio: 'a3.mp3'})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -48,7 +47,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'G#'
-            }})
+            }, audio: 'g-4.mp3'})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -56,7 +55,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'G'
-            }})
+            }, audio: 'g4.mp3'})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -65,7 +64,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'F#'
-            }})
+            }, audio: 'f-4.mp3'})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -73,7 +72,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'F'
-            }})
+            }, audio: 'f4.mp3'})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -81,7 +80,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'E'
-            }})
+            }, audio: 'e4.mp3'})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -89,7 +88,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'D#'
-            }})
+            }, audio: 'd-4.mp3'})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -97,15 +96,22 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'D'
-            }})
+            }, audio: 'd4.mp3'})
            pianoReducer(this.state, addNoteAction)
 
         }
         else if (clss === "black cs") {
             this.setState({note: {
                 position: this.state.spot,
+                note: 'C#'
+            }, audio: 'c-4.mp3'})
+           pianoReducer(this.state, addNoteAction)
+
+        }else if (clss === "white c") {
+            this.setState({note: {
+                position: this.state.spot,
                 note: 'C'
-            }})
+            }, audio: 'c-4.mp3'})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -156,6 +162,4 @@ export default connect()(PianoComponent)
 
 
 
-  const start = () => {
-    
-  }
+ 
