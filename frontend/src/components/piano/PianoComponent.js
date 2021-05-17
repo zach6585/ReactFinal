@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../../Piano.css';
-
 import pianoReducer from '../../reducers/pianoReducer'
 import { addNoteAction } from '../../actions/piano'
 
 class PianoComponent extends Component {
     state = {
         song: { title: '',
-            note: {
+            notes: {
                 note: '',
                 position: 0,
-            }, spot: 0, audio: ''
+            }, spot: 0
              
     }
 }
@@ -22,8 +21,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'B'
-            }, audio: 'b3.mp3'})
-            
+            }})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -31,7 +29,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'A#'
-            }, audio: 'a-3.mp3'})
+            }})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -39,7 +37,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'A'
-            }, audio: 'a3.mp3'})
+            }})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -47,7 +45,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'G#'
-            }, audio: 'g-4.mp3'})
+            }})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -55,7 +53,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'G'
-            }, audio: 'g4.mp3'})
+            }})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -64,7 +62,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'F#'
-            }, audio: 'f-4.mp3'})
+            }})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -72,7 +70,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'F'
-            }, audio: 'f4.mp3'})
+            }})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -80,7 +78,7 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'E'
-            }, audio: 'e4.mp3'})
+            }})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -88,15 +86,15 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'D#'
-            }, audio: 'd-4.mp3'})
+            }})
            pianoReducer(this.state, addNoteAction)
 
         }
         else if (clss === "white d") {
-            this.setState({note: {
+            this.setState({...this.state, song: {...this.state.song, notes: {
                 position: this.state.spot,
                 note: 'D'
-            }, audio: 'd4.mp3'})
+            }}})
            pianoReducer(this.state, addNoteAction)
 
         }
@@ -104,18 +102,21 @@ class PianoComponent extends Component {
             this.setState({note: {
                 position: this.state.spot,
                 note: 'C#'
-            }, audio: 'c-4.mp3'})
-           pianoReducer(this.state, addNoteAction)
-
-        }else if (clss === "white c") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'C'
-            }, audio: 'c-4.mp3'})
+            }})
            pianoReducer(this.state, addNoteAction)
 
         }
+        else if (clss === "white c") {
+            this.setState({note: {
+                position: this.state.spot,
+                note: 'C'
+            }})
+           pianoReducer(this.state, addNoteAction)
+    
+        }
     }
+    
+
 
     handleChange = event => {
         this.setState({song: {title: event.target.value}})
@@ -136,6 +137,7 @@ class PianoComponent extends Component {
                                 <h3></h3>
                     </div>
                     <div>
+                        <h3 value={this.state.song.notes}></h3>
                         <ul className="set">
                             <li className="white b" onClick={event => this.handleClick(event)}></li>
                             <li className="black as" onClick={event => this.handleClick(event)}></li>

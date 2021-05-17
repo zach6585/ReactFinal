@@ -21,7 +21,7 @@ class UserLogin extends Component {
     handleSubmit = event => {
         event.preventDefault();
         // this.setState({ submitted: true });
-        const allUsers = fetchUsers().json();
+        const allUsers = fetchUsers();
         if (this.state.user.username && this.state.user.password) {
             let exists = false
             for (const i in allUsers){
@@ -36,7 +36,8 @@ class UserLogin extends Component {
                 <Redirect to="/"></Redirect>
             }
             else{
-                this.setState({...this.state, submitted: true})
+                this.setState({...this.state, submitted: true});
+                <Redirect to="/music"></Redirect>
             }
             
     }

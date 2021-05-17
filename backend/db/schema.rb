@@ -13,8 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_05_17_124914) do
 
   create_table "sheets", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
+    t.string "title"
     t.text "note_data"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

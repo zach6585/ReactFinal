@@ -1,7 +1,7 @@
 export const addUser = user => {
     return (dispatch) => {
         dispatch({type: 'ADD_USER'});
-        fetch("localhost:3000/", {
+        fetch("localhost:3000/users", {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -17,7 +17,7 @@ export const addUser = user => {
 export function fetchUsers() {
     return (dispatch) => {
         dispatch({type: 'FETCH_USER_REQUEST'});
-        fetch("localhost:3000/login")
+        fetch("localhost:3000/users")
         .then(response => response.json())
         .then(json => {
             let obj = {}
@@ -25,6 +25,7 @@ export function fetchUsers() {
             for (const i in json){
                 obj.push(i)
             }
+            console.log(obj)
             return obj
         })
     }

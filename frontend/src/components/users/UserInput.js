@@ -23,7 +23,6 @@ class UserInput extends Component {
         event.preventDefault();
         // this.setState({ submitted: true });
         const allUsers = fetchUsers();
-        console.log(allUsers)
         if (this.state.user.username && this.state.user.password) {
             let exists = false
             for (const i in allUsers){
@@ -39,7 +38,8 @@ class UserInput extends Component {
             }
             else{
                 addUser(this.state.user);
-                this.setState({...this.state, submitted: true})
+                this.setState({...this.state, submitted: true});
+                <Redirect to="/music"></Redirect>
             }
             
     }
