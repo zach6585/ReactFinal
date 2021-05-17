@@ -73,3 +73,16 @@
   ul li:last-child {
     border-radius:0 5px 5px 5px
   }
+
+  h1#treble {
+    position: absolute;
+    font-size: 100px;
+    z-index: 1;
+    bottom: 370px;
+    margin-left: 10px;
+  }
+  
+  .staff {
+    z-index: 0;
+  }
+  

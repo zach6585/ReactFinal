@@ -4,7 +4,7 @@ import UserInput from './components/users/UserInput'
 import { BrowserRouter as Router,  Route, Switch } from 'react-router-dom';
 import './App.css';
 import UserLogin from './components/users/UserLogin';
-import Music from './containers/Music'
+import PianoComponent from './components/piano/PianoComponent'
 
 
 
@@ -22,7 +22,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={UserInput} />
             <Route exact path='/login' component={UserLogin} />
-            <Route exact path="/music" component={Music} />
+            <Route exact path="/music" component={PianoComponent} />
           </Switch>
         </div>
       </Router>

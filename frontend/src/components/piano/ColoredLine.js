@@ -1,15 +1,15 @@
-const ColoredLine = ({ color }) => (
+const ColoredLine = ({ color, height, ID }) => (
     
     <hr
         style={{
             color: color,
             backgroundColor: color,
-            height: 4,
-            
-            
+            height: height,
             marginLeft: '10px',
-            marginRight: '10px'
-        }} className="staff"
+            marginRight: '10px',
+            marginBottom: `0px`,
+            marginTop: `0px`
+        }} className="staff" id={ID}
     />
 );
 
