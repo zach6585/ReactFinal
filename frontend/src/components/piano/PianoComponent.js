@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../../Piano.css';
+
 import pianoReducer from '../../reducers/pianoReducer'
 import { addNoteAction } from '../../actions/piano'
+import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
+import '../../Piano.css';
 
 class PianoComponent extends Component {
     state = {
@@ -14,110 +16,6 @@ class PianoComponent extends Component {
              
     }
 }
-    
-    handleClick = event => {
-        const clss = event.target.className 
-        if (clss === "white b") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'B'
-            }})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-        else if (clss === "black as") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'A#'
-            }})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-        else if (clss === "white a") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'A'
-            }})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-        else if (clss === "black gs") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'G#'
-            }})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-        else if (clss === "white g") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'G'
-            }})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-
-        else if (clss === "black fs") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'F#'
-            }})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-        else if (clss === "white f") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'F'
-            }})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-        else if (clss === "white e") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'E'
-            }})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-        else if (clss === "black ds") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'D#'
-            }})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-        else if (clss === "white d") {
-            this.setState({...this.state, song: {...this.state.song, notes: {
-                position: this.state.spot,
-                note: 'D'
-            }}})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-        else if (clss === "black cs") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'C#'
-            }})
-           pianoReducer(this.state, addNoteAction)
-
-        }
-        else if (clss === "white c") {
-            this.setState({note: {
-                position: this.state.spot,
-                note: 'C'
-            }})
-           pianoReducer(this.state, addNoteAction)
-    
-        }
-    }
-    
-
-
     handleChange = event => {
         this.setState({song: {title: event.target.value}})
     }
@@ -126,38 +24,30 @@ class PianoComponent extends Component {
         event.preventDefault();
     }
     render() {
-        return(
-            <body>
-                <style>{'body { background-color: green; }'}</style>
-                <div>
-                    <div>
-                        <form onSubmit={this.handleTitleSubmit}>
-                            <input id="title" placeholder="Insert Title" onChange={event => this.handleChange(event)} value={this.state.song.title}></input>
-                        </form>
-                                <h3></h3>
-                    </div>
-                    <div>
-                        <h3 value={this.state.song.notes}></h3>
-                        <ul className="set">
-                            <li className="white b" onClick={event => this.handleClick(event)}></li>
-                            <li className="black as" onClick={event => this.handleClick(event)}></li>
-                            <li className="white a" onClick={event => this.handleClick(event)}></li>
-                            <li className="black gs" onClick={event => this.handleClick(event)}></li>
-                            <li className="white g" onClick={event => this.handleClick(event)}></li>
-                            <li className="black fs" onClick={event => this.handleClick(event)}></li>
-                            <li className="white f" onClick={event => this.handleClick(event)}></li>
-                            <li className="white e" onClick={event => this.handleClick(event)}></li>
-                            <li className="black ds" onClick={event => this.handleClick(event)}></li>
-                            <li className="white d" onClick={event => this.handleClick(event)}></li>
-                            <li className="black cs" onClick={event => this.handleClick(event)}></li>
-                            <li className="white c" onClick={event => this.handleClick(event)}></li>
-                        </ul>
-                    </div>
-                </div>
-            </body>
-        )
+        const firstNote = MidiNumbers.fromNote('c3');
+        const lastNote = MidiNumbers.fromNote('f5');
+        const keyboardShortcuts = KeyboardShortcuts.create({
+            firstNote: firstNote,
+            lastNote: lastNote,
+            keyboardConfig: KeyboardShortcuts.HOME_ROW,
+        });
+ 
+        return (
+        <Piano
+            noteRange={{ first: firstNote, last: lastNote }}
+            playNote={(midiNumber) => {
+            // Play a given note - see notes below
+            }}
+        stopNote={(midiNumber) => {
+        // Stop playing a given note - see notes below
+        }}
+        width={1530}
+        keyboardShortcuts={keyboardShortcuts}
+        />
+    );
     }
 }
+       
 
 export default connect()(PianoComponent)
 

@@ -22,6 +22,7 @@ class UserLogin extends Component {
         event.preventDefault();
         // this.setState({ submitted: true });
         const allUsers = fetchUsers();
+        console.log(allUsers)
         if (this.state.user.username && this.state.user.password) {
             let exists = false
             for (const i in allUsers){
