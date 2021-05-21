@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import pianoReducer from '../../reducers/pianoReducer'
 import { addNoteAction } from '../../actions/piano'
 import { Piano, KeyboardShortcuts, MidiNumbers } from 'react-piano';
+import Soundfont from 'soundfont-player';
 import '../../Piano.css';
 
 class PianoComponent extends Component {
@@ -23,6 +24,9 @@ class PianoComponent extends Component {
     handleTitleSubmit = event => {
         event.preventDefault();
     }
+
+    
+
     render() {
         const firstNote = MidiNumbers.fromNote('c3');
         const lastNote = MidiNumbers.fromNote('f5');
@@ -36,8 +40,9 @@ class PianoComponent extends Component {
         <Piano
             noteRange={{ first: firstNote, last: lastNote }}
             playNote={(midiNumber) => {
-            // Play a given note - see notes below
-            }}
+               
+        }}
+
         stopNote={(midiNumber) => {
         // Stop playing a given note - see notes below
         }}
