@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
-import "react-piano/dist/styles.css";
-import SoundfontProvider from './SoundFont'
-import '../../Piano.css';
 import addSong from '../../actions/piano'
+import SoundfontProvider from './SoundFont'
+import "react-piano/dist/styles.css";
+import '../../Piano.css';
+
 
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -21,7 +22,7 @@ const keyboardShortcuts = KeyboardShortcuts.create({
 });
 
 class PianoComponent extends Component {
-    state = { title: '', currnotes: [],
+    state = { title: '', creator: "", currnotes: [],
             music: []
 }
     onPlayNoteInput = (m,p) => {
