@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactDOM from "react-dom";
 import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
 import "react-piano/dist/styles.css";
 import SoundfontProvider from './SoundFont'
@@ -20,41 +19,61 @@ const keyboardShortcuts = KeyboardShortcuts.create({
   lastNote: noteRange.last,
   keyboardConfig: KeyboardShortcuts.HOME_ROW
 });
-function BasicPiano() {
-return (
-    <SoundfontProvider
-    instrumentName="acoustic_grand_piano"
-    audioContext={audioContext}
-    hostname={soundfontHostname}
-    render={({ isLoading, playNote, stopNote }) => (
-        <Piano
-        noteRange={noteRange}
-        width={1530}
-        keyWidthToHeight={0.6}
-        playNote={playNote}
-        stopNote={stopNote}
-        disabled={isLoading}
-        keyboardShortcuts={keyboardShortcuts}
-        />
-    )}
-    />
-);
-}
+
 class PianoComponent extends Component {
-    state = {
-        song: { title: '',
-            notes: {
-                note: '',
-                position: 0,
-            }, spot: 0
-             
-    }
+    state = { title: '', currnotes: [],
+            music: []
 }
+    onPlayNoteInput = (m,p) => {
+        
+        if (!this.state.currnotes.includes(m)){
+            this.setState({currnotes: this.state.currnotes.concat(m)})
+        }
+    
+    }
+    handleNextNote = (event) => {
+        console.log(this.state.currnotes.length===0)
+        if (this.state.currnotes.length===0){
+            this.setState({music: this.state.music.concat([-1])})
+            
+        }    
+        else{   
+            this.setState({music: this.state.music.concat([this.state.currnotes]), currnotes: []})
+            
+        }
+        
+        
+        
+    }
+
+    handleDeleteNote = (event) => {
+        if (this.state.music.length !==0){
+            this.setState({music: this.state.music.slice(0, -1)})
+        }
+    }
 
     render() {
         return (
-            <div>
-                <BasicPiano />
+            <div >
+                <SoundfontProvider
+                instrumentName="acoustic_grand_piano"
+                audioContext={audioContext}
+                hostname={soundfontHostname}
+                render={({ isLoading, playNote, stopNote, onPlayNoteInput}) => (
+                    <Piano
+                    noteRange={noteRange}
+                    width={1530}
+                    keyWidthToHeight={0.6}
+                    playNote={playNote}
+                    stopNote={stopNote}
+                    disabled={isLoading}
+                    keyboardShortcuts={keyboardShortcuts}
+                    onPlayNoteInput={this.onPlayNoteInput}
+                    />
+                )}
+                />
+                <button id="next-note" onClick={this.handleNextNote}>Next Note</button>
+                <button id="delete-note" onClick={this.handleDeleteNote}>Delete Note</button>
             </div>
         )}
 }

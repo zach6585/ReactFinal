@@ -1,8 +1,3 @@
-export const addNoteAction = {
-    type: 'ADD_NOTE'
-}
-
-
 export const addSong = song => {
     return (dispatch) => {
         dispatch({type: 'ADD_SONG'});
