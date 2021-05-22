@@ -32,7 +32,6 @@ class PianoComponent extends Component {
     
     }
     handleNextNote = (event) => {
-        console.log(this.state.currnotes.length===0)
         if (this.state.currnotes.length===0){
             this.setState({music: this.state.music.concat([-1])})
             
@@ -41,15 +40,16 @@ class PianoComponent extends Component {
             this.setState({music: this.state.music.concat([this.state.currnotes]), currnotes: []})
             
         }
-        
+        console.log(this.state.music)
         
         
     }
 
     handleDeleteNote = (event) => {
         if (this.state.music.length !==0){
-            this.setState({music: this.state.music.slice(0, -1)})
+            this.setState({music: this.state.music.slice(0, -1), currnotes: []})
         }
+        console.log(this.state.music)
     }
 
     render() {
@@ -74,6 +74,8 @@ class PianoComponent extends Component {
                 />
                 <button id="next-note" onClick={this.handleNextNote}>Next Note</button>
                 <button id="delete-note" onClick={this.handleDeleteNote}>Delete Note</button>
+                <h3></h3>
+                <button id="submit" onClick={this.handleSubmit}>Submit Music</button>
             </div>
         )}
 }
