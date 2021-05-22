@@ -4,7 +4,7 @@ import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
 import "react-piano/dist/styles.css";
 import SoundfontProvider from './SoundFont'
 import '../../Piano.css';
-
+import addSong from '../../actions/piano'
 
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -49,7 +49,12 @@ class PianoComponent extends Component {
         if (this.state.music.length !==0){
             this.setState({music: this.state.music.slice(0, -1), currnotes: []})
         }
-        console.log(this.state.music)
+    }
+
+    handleSubmit = (event) => {
+        if (this.state.music.length !==0){
+            addSong(this.state)
+        }
     }
 
     render() {
@@ -79,7 +84,7 @@ class PianoComponent extends Component {
             </div>
         )}
 }
-       
+
 
 export default connect()(PianoComponent)
 

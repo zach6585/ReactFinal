@@ -1,12 +1,11 @@
-export default function pianoReducer(state = { title: '', currnotes: [],
-music: []
+export default function pianoReducer(state = { songs: []
 }, action) {
   
     switch(action.type) {
       
-      case 'ADD_NOTES':
+      case 'ADD_SONG':
         return {
-          ...state, music: state.music.concat(state.currnotes), currnotes: []
+          ...state, songs: action.songs
         }       
       default:
         return state;
