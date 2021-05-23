@@ -1,4 +1,4 @@
-export const addSong = song => {
+export default function addSong(song) {
     return (dispatch) => {
         dispatch({type: 'ADD_SONG'});
         fetch("localhost:3000/songs", {

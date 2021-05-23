@@ -58,9 +58,11 @@ class PianoComponent extends Component {
         }
     }
 
+   
+
     render() {
         return (
-            <div >
+            <div>
                 <SoundfontProvider
                 instrumentName="acoustic_grand_piano"
                 audioContext={audioContext}
