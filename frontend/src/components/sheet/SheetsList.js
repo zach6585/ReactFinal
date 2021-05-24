@@ -5,12 +5,9 @@ import { withRouter } from 'react-router-dom'
 
  class SheetsList extends Component {
 
-   state = {
-       sheet: ""
-   }
    handleButton = (event, sheet) => {
        event.preventDefault();
-       this.setState({sheet: sheet})
+       console.log(sheet)
        let j = ""
        for (let i of sheet.music.split(")")){
            i = i.replaceAll("(", "")
@@ -23,12 +20,25 @@ import { withRouter } from 'react-router-dom'
            i = `[${i}] | `
            j = j + i
        } 
-       this.setState({sheet: j})
-       this.props.history.push({
+        this.props.history.push({
         pathname: '/sheet',
-        state: {sheet: this.state.sheet}
-      })
-   }    
+        state: {detail: 
+        `
+        X: 1
+        T: ${sheet.title}
+        C: ${sheet.creator}
+        M: 4/4
+        L: 1/4
+        Q:1/4=60
+        %%staves {V1}
+        V: V1 clef=treble
+        [V: V1] ${j}
+        `
+        
+      }
+   })
+}
+    
 
    render(){
     const sheets = this.props.props.sheets.map(sheet => 
@@ -45,9 +55,9 @@ import { withRouter } from 'react-router-dom'
 }
 const mapStateToProps = (state) => {
     return {
-        sheet: this.state.sheet
+        sheet: state.sheet
     }
 }
 
 
-export default withRouter(connect(mapStateToProps)(SheetsList))
+export default withRouter((SheetsList))

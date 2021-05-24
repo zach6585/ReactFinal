@@ -6,12 +6,15 @@ import SheetsList from './SheetsList'
  class SheetComponent extends Component {
    
    render(){
-     <SheetsList />
-    const notation = this.props.location.state.detail
-    console.log(notation)
+
+    console.log(this.props.location)
+   
+
+    
+    
   return (
     <Notation
-      notation = {notation}
+      notation = {this.props.location.state.detail}
     />
   )
     }
