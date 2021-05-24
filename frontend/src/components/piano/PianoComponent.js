@@ -22,33 +22,89 @@ const keyboardShortcuts = KeyboardShortcuts.create({
 });
 
 class PianoComponent extends Component {
-    state = { title: '', creator: "", currnotes: [],
-            music: []
+    state = { title: '', creator: "", currnotes: [], currnums: [],
+            music: [], nums: []
 }
+
+    numToNote = (num) => {
+        if (num === 48){
+            return "C3"
+        }
+        else if (num===49){
+            return "C#3"
+        }
+        else if (num===50){
+            return "D3"
+        }
+        else if (num===51){
+            return "D#3"
+        }
+        else if (num===52){
+            return "E3"
+        }
+        else if (num===53){
+            return "F3"
+        }
+        else if (num===54){
+            return "F#3"
+        }
+        else if (num===55){
+            return "G3"
+        }
+        else if (num===56){
+            return "G#3"
+        }
+        else if (num===57){
+            return "A3"
+        }
+        else if (num===58){
+            return "A#3"
+        }
+        else if (num===59){
+            return "B3"
+        }
+        if (num === 60){
+            return "C4"
+        }
+        else if (num===61){
+            return "C#4"
+        }
+        else if (num===62){
+            return "D4"
+        }
+        else if (num===63){
+            return "D#4"
+        }
+        else if (num===65){
+            return "E4"
+        }
+        else if (num===66){
+            return "F4"
+        }
+    }
     onPlayNoteInput = (m,p) => {
-        
-        if (!this.state.currnotes.includes(m)){
-            this.setState({currnotes: this.state.currnotes.concat(m)})
+        if (!this.state.currnotes.includes(this.numToNote(m))){
+            this.setState({currnotes: this.state.currnotes.concat(this.numToNote(m))}) 
+            this.setState({currnums: this.state.currnums.concat(m)}) 
         }
     
     }
     handleNextNote = (event) => {
         if (this.state.currnotes.length===0){
-            this.setState({music: this.state.music.concat([-1])})
-            
+            this.setState({music: this.state.music.concat([" rest "])})
+            this.setState({nums: this.state.nums.concat([-1])})
         }    
         else{   
-            this.setState({music: this.state.music.concat([this.state.currnotes]), currnotes: []})
+            this.setState({music: this.state.music.concat([` (${this.state.currnotes}) `]), currnotes: []})
+            this.setState({nums: this.state.nums.concat([this.state.currnums]), currnums: []})
             
-        }
-        console.log(this.state.music)
-        
-        
+        }   
     }
 
     handleDeleteNote = (event) => {
         if (this.state.music.length !==0){
             this.setState({music: this.state.music.slice(0, -1), currnotes: []})
+            this.setState({nums: this.state.nums.slice(0, -1), currnotes: []})
         }
     }
 
@@ -63,6 +119,7 @@ class PianoComponent extends Component {
     render() {
         return (
             <div>
+                <h1>{this.state.music}</h1>
                 <SoundfontProvider
                 instrumentName="acoustic_grand_piano"
                 audioContext={audioContext}
