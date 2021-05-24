@@ -36,9 +36,6 @@ class PianoForm extends Component {
     )}
 }
   
-// const mapStateToProps = (state) => {
-//     return state 
-// }
 
 
 export default withRouter(PianoForm)

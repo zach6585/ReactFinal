@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
 import { addSong } from '../../actions/piano'
 import SoundfontProvider from './SoundFont'
+import { withRouter } from 'react-router-dom';
 import "react-piano/dist/styles.css";
 import '../../Piano.css';
+
 
 
 
@@ -113,6 +115,7 @@ class PianoComponent extends Component {
             
             this.props.addSong(this.state)
             this.setState({music: [], title: '', creator: ''})
+            this.props.history.push('/')
         }
 
     }
@@ -153,7 +156,7 @@ const mapDispatchToProps = dispatch => {
     })
 }
 
-export default connect(null, mapDispatchToProps)(PianoComponent)
+export default withRouter(connect(null, mapDispatchToProps)(PianoComponent))
 
 
 
