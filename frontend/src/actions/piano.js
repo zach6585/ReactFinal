@@ -1,7 +1,8 @@
-export default function addSong(song) {
+export function addSong(song) {
+    console.log(song)
     return (dispatch) => {
         dispatch({type: 'ADD_SONG'});
-        fetch("localhost:3000/songs", {
+        fetch("http://localhost:3000/songs", {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',

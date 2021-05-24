@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Piano, KeyboardShortcuts, MidiNumbers } from "react-piano";
-import addSong from '../../actions/piano'
+import { addSong } from '../../actions/piano'
 import SoundfontProvider from './SoundFont'
 import "react-piano/dist/styles.css";
 import '../../Piano.css';
@@ -22,8 +22,8 @@ const keyboardShortcuts = KeyboardShortcuts.create({
 });
 
 class PianoComponent extends Component {
-    state = { title: '', creator: "", currnotes: [], currnums: [],
-            music: [], nums: []
+    state = { title: this.props.location.state.detail.title, creator: this.props.location.state.detail.creator, currnotes: [], 
+            music: []
 }
 
     numToNote = (num) => {
@@ -85,18 +85,17 @@ class PianoComponent extends Component {
     onPlayNoteInput = (m,p) => {
         if (!this.state.currnotes.includes(this.numToNote(m))){
             this.setState({currnotes: this.state.currnotes.concat(this.numToNote(m))}) 
-            this.setState({currnums: this.state.currnums.concat(m)}) 
         }
     
     }
     handleNextNote = (event) => {
         if (this.state.currnotes.length===0){
             this.setState({music: this.state.music.concat([" rest "])})
-            this.setState({nums: this.state.nums.concat([-1])})
+            
         }    
         else{   
             this.setState({music: this.state.music.concat([` (${this.state.currnotes}) `]), currnotes: []})
-            this.setState({nums: this.state.nums.concat([this.state.currnums]), currnums: []})
+           
             
         }   
     }
@@ -104,14 +103,18 @@ class PianoComponent extends Component {
     handleDeleteNote = (event) => {
         if (this.state.music.length !==0){
             this.setState({music: this.state.music.slice(0, -1), currnotes: []})
-            this.setState({nums: this.state.nums.slice(0, -1), currnotes: []})
+           
         }
     }
 
     handleSubmit = (event) => {
+        event.preventDefault();
         if (this.state.music.length !==0){
-            addSong(this.state)
+            
+            this.props.addSong(this.state)
+            this.setState({music: [], title: '', creator: ''})
         }
+
     }
 
    
@@ -145,8 +148,12 @@ class PianoComponent extends Component {
         )}
 }
 
+const mapDispatchToProps = dispatch => {
+    return ({addSong: (song) => dispatch(addSong(song))
+    })
+}
 
-export default connect()(PianoComponent)
+export default connect(null, mapDispatchToProps)(PianoComponent)
 
 
 
