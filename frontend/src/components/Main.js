@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { fetchSheets } from '../actions/sheet'
 
 class Main extends Component {
     handlePiano = event => {

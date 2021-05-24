@@ -1,36 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom'
 
 
  class SheetsList extends Component {
 
+   state = {
+       sheet: ""
+   }
    handleButton = (event, sheet) => {
        event.preventDefault();
+       this.setState({sheet: sheet})
+       let j = ""
+       for (let i of sheet.music.split(")")){
+           i = i.replaceAll("(", "")
+           i = i.replaceAll('"', "")
+           i = i.replaceAll('[',"")
+           i = i.replaceAll(']',"")
+           i = i.replaceAll(" ","")
+           i = i.replaceAll(",", " ")
+           
+           i = `[${i}] | `
+           j = j + i
+       } 
+       this.setState({sheet: j})
        this.props.history.push({
         pathname: '/sheet',
-        state: { detail: `
-            X: 1
-            T: ${sheet.title}
-            C: ${sheet.creator}
-            M: 4/4
-            L: 1/8
-            Q: 1/4=60
-            %%staves ${{}}
-            V: V1 clef=treble
-            V: V2 clef=treble
-            ...
-            V: Vn clef=treble (n is however many measures are needed based on how long the song is)
-            
-        ` }
+        state: {sheet: this.state.sheet}
       })
    }    
 
    render(){
     const sheets = this.props.props.sheets.map(sheet => 
-    <div>
-        <h2 key={sheet.id}>{`${sheet.title==="" ? 'untitled' : sheet.title} by ${sheet.creator}`}</h2>
+    <div key={sheet.id}>
+        <h2>{`${sheet.title==="" ? 'untitled' : sheet.title} by ${sheet.creator}`}</h2>
         <button onClick={(event, s) => this.handleButton(event, sheet)}>Click Me!</button>
     </div>);
   return (
@@ -42,7 +45,7 @@ import { withRouter } from 'react-router-dom';
 }
 const mapStateToProps = (state) => {
     return {
-        data: this.props.props.sheets.filter()
+        sheet: this.state.sheet
     }
 }
 

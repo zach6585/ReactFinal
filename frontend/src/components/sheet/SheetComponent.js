@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
 import { Notation } from 'react-abc'
-
+import SheetsList from './SheetsList'
 
 
  class SheetComponent extends Component {
+   
    render(){
+     <SheetsList />
+    const notation = this.props.location.state.detail
+    console.log(notation)
   return (
     <Notation
-      notation = {{
-        X: 1, 
-        T: 3
-      }}
+      notation = {notation}
     />
   )
     }
