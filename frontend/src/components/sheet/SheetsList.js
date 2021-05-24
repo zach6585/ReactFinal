@@ -1,32 +1,34 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import { Notation } from 'react-abc'
 import { fetchSheets } from '../../actions/sheet'
 
 
 
- class SheetComponent extends Component {
-    state = {
-        sheet: {
-            id: -1,
-            title: '',
-            creator: '',
-            music: []
-        }
-    }
-   render(){
-     const sheets = fetchSheets();
+ class SheetsList extends Component {
 
-     handleClick = (event, sheet) => {
-        this.setState({id: sheet.id, title: sheet.title, creator: sheet.creator, music: sheet.music})
-        
-     }
-     for (const i of sheets){
-        <button onClick={(event, i) => handleClick(event, i)} value={`${this.state.title} by ${this.state.creator}`}>Click Me</button>
-     }
+    handleClick = (event) => {
+        this.props.fetchSheets()
+        console.log(this.props)
+    }
+    
+
+   render(){
   return (
-    <div>hi</div>
+    <button onClick={event => this.handleClick(event)}>Click Me!</button>
   )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        sheets: state.sheets,
+        loading: state.loading
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchSheets: () => dispatch(fetchSheets())
+    }
+}
 
-export default SheetComponent
+export default connect(mapStateToProps,mapDispatchToProps)(SheetsList)

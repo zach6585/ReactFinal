@@ -6,7 +6,7 @@ import './App.css';
 import PianoComponent from './components/piano/PianoComponent';
 import Main from './components/Main'
 import PianoForm from './components/piano/PianoForm'
-import SheetComponent from './components/sheet/SheetComponent';
+import SheetsList from './components/sheet/SheetsList';
 
 
 
@@ -22,7 +22,7 @@ class App extends Component {
             <Route exact path="/" component={Main} />
             <Route exact path="/pianoform" component={PianoForm} />
             <Route exact path="/music" component={PianoComponent} />
-            <Route exact path="/sheets" component={SheetComponent} />
+            <Route exact path="/sheets" component={SheetsList} />
           </Switch>
         </div>
       </Router>
