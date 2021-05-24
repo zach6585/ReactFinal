@@ -7,7 +7,7 @@ import SheetsList from './SheetsList'
    
    render(){
 
-    console.log(this.props.location)
+    console.log(this.props.location.state.detail)
    
 
     
