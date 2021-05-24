@@ -145,7 +145,7 @@ class PianoComponent extends Component {
                 />
                 <button id="next-note" onClick={this.handleNextNote}>Next Note</button>
                 <button id="delete-note" onClick={this.handleDeleteNote}>Delete Note</button>
-                <h3></h3>
+                <h3> </h3>
                 <button id="submit" onClick={this.handleSubmit}>Submit Music</button>
             </div>
         )}

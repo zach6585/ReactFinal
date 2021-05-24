@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { Notation } from 'react-abc'
-import SheetsList from './SheetsList'
+import { withRouter } from 'react-router-dom';
 
 
  class SheetComponent extends Component {
    
+   handleOnClick = (event) => {
+     this.props.history.push("/");
+   }
    render(){
 
     console.log(this.props.location.state.detail)
@@ -13,11 +16,14 @@ import SheetsList from './SheetsList'
     
     
   return (
+    <div>
     <Notation
       notation = {this.props.location.state.detail}
     />
+    <button onClick={event => this.handleOnClick(event)}>Return to Main Page</button>
+    </div>
   )
     }
 }
 
-export default SheetComponent
+export default withRouter(SheetComponent)

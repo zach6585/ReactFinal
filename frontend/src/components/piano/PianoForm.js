@@ -27,9 +27,9 @@ class PianoForm extends Component {
     render(){
     return (
     <form onSubmit={this.handleSubmit}>
-        <label for="title">Title of Song</label>
+        <label htmlFor="title">Title of Song</label>
             <input type="text" name="title" onChange={event => this.handleTitleChange(event)} value={this.state.title}></input>
-        <label for="creator">Your Name</label>
+        <label htmlFor="creator">Your Name</label>
             <input type="text" name="creator" onChange={event => this.handleCreatorChange(event)} value={this.state.creator}></input>
         <button type="submit">Submit</button>
     </form>
