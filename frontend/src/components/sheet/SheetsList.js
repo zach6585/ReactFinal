@@ -1,34 +1,32 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import { Notation } from 'react-abc'
-import { fetchSheets } from '../../actions/sheet'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 
 
 
  class SheetsList extends Component {
 
-    handleClick = (event) => {
-        this.props.fetchSheets()
-        console.log(this.props)
-    }
-    
+   handleButton = (event, sheet) => {
+       event.preventDefault();
+       this.props.history.push({
+        pathname: '/sheet',
+        state: { detail: sheet }
+      })
+   }    
 
    render(){
+    const sheets = this.props.props.sheets.map(sheet => 
+    <div>
+        <h2 key={sheet.id}>{`${sheet.title==="" ? 'untitled' : sheet.title} by ${sheet.creator}`}</h2>
+        <button onClick={(event, s) => this.handleButton(event, sheet)}>Click Me!</button>
+    </div>);
   return (
-    <button onClick={event => this.handleClick(event)}>Click Me!</button>
+    <div>
+        {sheets}
+    </div>
   )
     }
 }
-const mapStateToProps = (state) => {
-    return {
-        sheets: state.sheets,
-        loading: state.loading
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchSheets: () => dispatch(fetchSheets())
-    }
-}
 
-export default connect(mapStateToProps,mapDispatchToProps)(SheetsList)
+
+export default withRouter(SheetsList)

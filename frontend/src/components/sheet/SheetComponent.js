@@ -6,7 +6,6 @@ import { fetchSheets } from '../../actions/sheet'
 
  class SheetComponent extends Component {
    render(){
-     const sheet = fetchSheets();
   return (
     <Notation
       notation = {{

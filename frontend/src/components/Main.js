@@ -6,9 +6,16 @@ class Main extends Component {
         event.preventDefault();
         this.props.history.push("/pianoform")
     }
+    handleSheets = event => {
+        event.preventDefault();
+        this.props.history.push("/sheets")
+    }
     render(){
         return(
-            <button id="toPiano" onClick={this.handlePiano}>Make Your Own Song</button>
+            <div>
+                <button id="toPiano" onClick={this.handlePiano}>Make Your Own Song</button>
+                <button id="toSheets" onClick={this.handleSheets}>See Other People's Songs</button>
+            </div>
         )
     }
 }
