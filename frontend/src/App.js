@@ -21,7 +21,7 @@ class App extends Component {
             <Route exact path="/pianoform" component={PianoForm} />
             <Route exact path="/music" component={PianoComponent} />
             <Route exact path="/sheets" component={SheetsContainer} />
-            <Route exact paht="/sheet" component={SheetComponent} />
+            <Route exact path="/sheet" component={SheetComponent} />
           </Switch>
         </div>
       </Router>

@@ -30,58 +30,58 @@ class PianoComponent extends Component {
 
     numToNote = (num) => {
         if (num === 48){
-            return "C3"
+            return "C"
         }
         else if (num===49){
-            return "C#3"
+            return "^C"
         }
         else if (num===50){
-            return "D3"
+            return "D"
         }
         else if (num===51){
-            return "D#3"
+            return "^D"
         }
         else if (num===52){
-            return "E3"
+            return "E"
         }
         else if (num===53){
-            return "F3"
+            return "F"
         }
         else if (num===54){
-            return "F#3"
+            return "^F"
         }
         else if (num===55){
-            return "G3"
+            return "G"
         }
         else if (num===56){
-            return "G#3"
+            return "^G"
         }
         else if (num===57){
-            return "A3"
+            return "A"
         }
         else if (num===58){
-            return "A#3"
+            return "^A"
         }
         else if (num===59){
-            return "B3"
+            return "B"
         }
         if (num === 60){
-            return "C4"
+            return "c"
         }
         else if (num===61){
-            return "C#4"
+            return "^c"
         }
         else if (num===62){
-            return "D4"
+            return "d"
         }
         else if (num===63){
-            return "D#4"
+            return "^d"
         }
         else if (num===65){
-            return "E4"
+            return "e"
         }
         else if (num===66){
-            return "F4"
+            return "f"
         }
     }
     onPlayNoteInput = (m,p) => {

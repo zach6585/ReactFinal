@@ -10,7 +10,20 @@ import { withRouter } from 'react-router-dom';
        event.preventDefault();
        this.props.history.push({
         pathname: '/sheet',
-        state: { detail: sheet }
+        state: { detail: `
+            X: 1
+            T: ${sheet.title}
+            C: ${sheet.creator}
+            M: 4/4
+            L: 1/8
+            Q: 1/4=60
+            %%staves ${{}}
+            V: V1 clef=treble
+            V: V2 clef=treble
+            ...
+            V: Vn clef=treble (n is however many measures are needed based on how long the song is)
+            
+        ` }
       })
    }    
 
@@ -27,6 +40,11 @@ import { withRouter } from 'react-router-dom';
   )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        data: this.props.props.sheets.filter()
+    }
+}
 
 
-export default withRouter(SheetsList)
+export default withRouter(connect(mapStateToProps)(SheetsList))

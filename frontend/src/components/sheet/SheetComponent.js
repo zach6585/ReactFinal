@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Notation } from 'react-abc'
-import { fetchSheets } from '../../actions/sheet'
 
 
 
