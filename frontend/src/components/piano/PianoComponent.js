@@ -92,7 +92,6 @@ class PianoComponent extends Component {
     }
     handleNextNote = (event) => {
         if (this.state.currnotes.length===0){
-            this.setState({music: this.state.music.concat([" rest "])})
             
         }    
         else{   
