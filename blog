@@ -1,0 +1,2 @@
+This file kept getting deleted so I'll make this quick. 
+My project is a piano project that allows for playing then making sheet music of the music you played. It is posted into a rails database and also fetched using thunk and fetch api. 
